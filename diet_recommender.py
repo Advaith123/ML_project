@@ -26,13 +26,30 @@ DinnerdataNumpy=Dinnerdata.to_numpy()
 Food_itemsdata=data['Food_items']
 
 
+def bmicheck(bmi):
+    print("Your body mass index is: ", bmi)
+    if ( bmi < 16):
+        print("Acoording to your BMI, you are Severely Underweight")
+        clbmi=4
+    elif ( bmi >= 16 and bmi < 18.5):
+        print("Acoording to your BMI, you are Underweight")
+        clbmi=3
+    elif ( bmi >= 18.5 and bmi < 25):
+        print("Acoording to your BMI, you are Healthy")
+        clbmi=2
+    elif ( bmi >= 25 and bmi < 30):
+        print("Acoording to your BMI, you are Overweight")
+        clbmi=1
+    elif ( bmi >=30):
+        print("Acoording to your BMI, you are Severely Overweight")
+        clbmi=0
+    return clbmi
+# def show_entry_fields():
+#     print("\n Age: %s\n Veg-NonVeg: %s\n Weight: %s kg\n Hight: %s cm\n" % (e1.get(), e2.get(),e3.get(), e4.get()))
 
-def show_entry_fields():
-    print("\n Age: %s\n Veg-NonVeg: %s\n Weight: %s kg\n Hight: %s cm\n" % (e1.get(), e2.get(),e3.get(), e4.get()))
 
-
-def Weight_Loss():
-    show_entry_fields()
+def Weight_Loss(age, veg, weight, height):
+    # show_entry_fields()
     
     breakfastfoodseparated=[]
     Lunchfoodseparated=[]
@@ -80,12 +97,7 @@ def Weight_Loss():
     DinnerfoodseparatedIDdata=DinnerfoodseparatedIDdata.iloc[Valapnd]
     DinnerfoodseparatedIDdata=DinnerfoodseparatedIDdata.T
         
-    #calculating BMI
-    age=int(e1.get())
-    veg=float(e2.get())
-    weight=float(e3.get())
-    height=float(e4.get())
-    bmi = weight/((height/100)**2) 
+    bmi = weight/((height/100)**2)
     agewiseinp=0
         
     for lp in range (0,80,20):
@@ -97,22 +109,7 @@ def Weight_Loss():
 
         
     #conditions
-    print("Your body mass index is: ", bmi)
-    if ( bmi < 16):
-        print("Acoording to your BMI, you are Severely Underweight")
-        clbmi=4
-    elif ( bmi >= 16 and bmi < 18.5):
-        print("Acoording to your BMI, you are Underweight")
-        clbmi=3
-    elif ( bmi >= 18.5 and bmi < 25):
-        print("Acoording to your BMI, you are Healthy")
-        clbmi=2
-    elif ( bmi >= 25 and bmi < 30):
-        print("Acoording to your BMI, you are Overweight")
-        clbmi=1
-    elif ( bmi >=30):
-        print("Acoording to your BMI, you are Severely Overweight")
-        clbmi=0
+    clbmi = bmicheck(bmi)
 
     #converting into numpy array
     DinnerfoodseparatedIDdata=DinnerfoodseparatedIDdata.to_numpy()
@@ -238,21 +235,21 @@ def Weight_Loss():
     print ('SUGGESTED FOOD ITEMS ::')
     for ii in range(len(y_pred)):
         if y_pred[ii]==2:     #weightloss
-            print (Food_itemsdata[ii])
+            print(Food_itemsdata[ii])
             findata=Food_itemsdata[ii]
             if int(veg)==1:
                 datanv=['Chicken Burger']
                 for it in range(len(datanv)):
                     if findata==datanv[it]:
                         print('VegNovVeg')
-
-    print('\n Thank You for taking our recommendations. :)')
-
-
+    return Food_itemsdata
+    # print('\n Thank You for taking our recommendations. :)')
 
 
-def Weight_Gain():
-    show_entry_fields()
+
+
+def Weight_Gain(age, veg, weight, height):
+    # show_entry_fields()
 
     breakfastfoodseparated=[]
     Lunchfoodseparated=[]
@@ -299,10 +296,10 @@ def Weight_Gain():
     DinnerfoodseparatedIDdata=DinnerfoodseparatedIDdata.T
         
     #claculating BMI
-    age=int(e1.get())
-    veg=float(e2.get())
-    weight=float(e3.get())
-    height=float(e4.get())
+    # age=int(e1.get())
+    # veg=float(e2.get())
+    # weight=float(e3.get())
+    # height=float(e4.get())
     bmi = weight/((height/100)**2)        
 
     for lp in range (0,80,20):
@@ -312,24 +309,7 @@ def Weight_Gain():
                 tr=round(lp/20)  
                 agecl=round(lp/20)
 
-    print("Your body mass index is: ", bmi)
-    if ( bmi < 16):
-        print("Acoording to your BMI, you are Severely Underweight")
-        clbmi=4
-    elif ( bmi >= 16 and bmi < 18.5):
-        print("Acoording to your BMI, you are Underweight")
-        clbmi=3
-    elif ( bmi >= 18.5 and bmi < 25):
-        print("Acoording to your BMI, you are Healthy")
-        clbmi=2
-    elif ( bmi >= 25 and bmi < 30):
-        print("Acoording to your BMI, you are Overweight")
-        clbmi=1
-    elif ( bmi >=30):
-        print("Acoording to your BMI, you are Severely Overweight")
-        clbmi=0
-
-
+    clbmi = bmicheck(bmi)
     
     DinnerfoodseparatedIDdata=DinnerfoodseparatedIDdata.to_numpy()
     LunchfoodseparatedIDdata=LunchfoodseparatedIDdata.to_numpy()
@@ -467,13 +447,13 @@ def Weight_Gain():
                 for it in range(len(datanv)):
                     if findata==datanv[it]:
                         print('VegNovVeg')
+    return Food_itemsdata
+    # print('\n Thank You for taking our recommendations. :)')
 
-    print('\n Thank You for taking our recommendations. :)')
 
 
-
-def Healthy():
-    show_entry_fields()
+def Healthy(age, veg, weight, height):
+    # show_entry_fields()
 
     breakfastfoodseparated=[]
     Lunchfoodseparated=[]
@@ -520,11 +500,11 @@ def Healthy():
     DinnerfoodseparatedIDdata=DinnerfoodseparatedIDdata.T
         
     
-    age=int(e1.get())
-    veg=float(e2.get())
-    weight=float(e3.get())
-    height=float(e4.get())
-    bmi = weight/((height/100)**2) 
+    # age=int(e1.get())
+    # veg=float(e2.get())
+    # weight=float(e3.get())
+    # height=float(e4.get())
+    bmi = weight/((height/100)**2)
     agewiseinp=0
         
     for lp in range (0,80,20):
@@ -535,25 +515,9 @@ def Healthy():
                 agecl=round(lp/20)    
 
         
-    #conditions
-    print("Your body mass index is: ", bmi)
-    if ( bmi < 16):
-        print("Acoording to your BMI, you are Severely Underweight")
-        clbmi=4
-    elif ( bmi >= 16 and bmi < 18.5):
-        print("Acoording to your BMI, you are Underweight")
-        clbmi=3
-    elif ( bmi >= 18.5 and bmi < 25):
-        print("Acoording to your BMI, you are Healthy")
-        clbmi=2
-    elif ( bmi >= 25 and bmi < 30):
-        print("Acoording to your BMI, you are Overweight")
-        clbmi=1
-    elif ( bmi >=30):
-        print("Acoording to your BMI, you are Severely Overweight")
-        clbmi=0
+    # conditions
+    clbmi = bmicheck(bmi)
 
-    
     DinnerfoodseparatedIDdata=DinnerfoodseparatedIDdata.to_numpy()
     LunchfoodseparatedIDdata=LunchfoodseparatedIDdata.to_numpy()
     breakfastfoodseparatedIDdata=breakfastfoodseparatedIDdata.to_numpy()
@@ -684,32 +648,6 @@ def Healthy():
             findata=Food_itemsdata[ii]
             if int(veg)==1:
                 datanv=['Chicken Burger']
+    return Food_itemsdata
+    # print('\n Thank You for taking our recommendations. :)')
 
-    print('\n Thank You for taking our recommendations. :)')
-
-if __name__ == '__main__':
-    main_win = Tk()
-    
-    Label(main_win,text="Age").grid(row=0,column=0,sticky=W,pady=4)
-    Label(main_win,text="veg/Non veg (1/0)").grid(row=1,column=0,sticky=W,pady=4)
-    Label(main_win,text="Weight (in kg)").grid(row=2,column=0,sticky=W,pady=4)
-    Label(main_win,text="Height (in cm)").grid(row=3,column=0,sticky=W,pady=4)
-
-    e1 = Entry(main_win)
-    e2 = Entry(main_win)
-    e3 = Entry(main_win)
-    e4 = Entry(main_win)
-
-    e1.grid(row=0, column=1)
-    e2.grid(row=1, column=1)
-    e3.grid(row=2, column=1)
-    e4.grid(row=3, column=1)
-
-    Button(main_win,text='Quit',command=main_win.quit).grid(row=5,column=0,sticky=W,pady=4)
-    Button(main_win,text='Weight Loss',command=Weight_Loss).grid(row=1,column=4,sticky=W,pady=4)
-    Button(main_win,text='Weight Gain',command=Weight_Gain).grid(row=2,column=4,sticky=W,pady=4)
-    Button(main_win,text='Healthy',command=Healthy).grid(row=3,column=4,sticky=W,pady=4)
-    main_win.geometry("400x200")
-    main_win.wm_title("DIET RECOMMENDATION SYSTEM")
-
-    main_win.mainloop()
